@@ -1,0 +1,29 @@
+﻿@model WebStore.Models.ProductPageModel
+
+    
+@{
+    ViewData["Title"] = $"Каталог: {Model.Category}";
+}
+
+<div class="container">
+    <div id="categories" class="col-3">
+        @await Component.InvokeAsync("MenuCategories")
+    </div>
+    <main role="main" class="col-9">
+    </main>
+</div>
+
+<div>
+    <h4>@ViewData["Title"]</h4>
+    <hr />
+    <dl class="row">
+
+        @foreach (var p in Model.Products)
+        {
+            @Html.Partial("ProductPartialView", p)
+        }
+
+    </dl>
+</div>
+
+<div page-model="@Model.Info" page-action="ProductsView"></div>

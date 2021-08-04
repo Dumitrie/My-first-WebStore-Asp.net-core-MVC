@@ -1,0 +1,17 @@
+﻿@model WebStore.BusinessLogic.Cart;
+
+<div>
+    @if (Model.Records.Count > 0)
+    {
+
+        <a asp-controller="Cart"
+           asp-action="Index"
+           class="btn btn-warning" style="">
+            <small class="navbar-text">
+                <b>Корзина</b>
+                @Model.Records.Sum(r => r.Quantity) шт
+            </small>
+        </a>
+        
+    }
+</div>

@@ -1,0 +1,35 @@
+﻿@using WebStore.Helpers
+@model WebStore.Domeins.Product
+
+
+<div class="card align-content-center text-white bg-dark" max-width="210" max-height="336">
+    <div class="img-thumbnail" bg="dark">
+        <img src="~/Images/@Model.ImageUrl" class="img-thumbnail" width="200" height="316">
+    </div>
+
+    <div class="text-info">
+        <a>@Model.Name</a>
+    </div>
+    <div class="text-center">
+        <h4>@Model.Author</h4>
+    </div>
+
+    <form id="@Model.Id"
+          asp-controller="Cart"
+          asp-action="AddToCart"
+          method="post">
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" name="returnUrl"
+               value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+        <button type="submit"
+                class="btn btn-outline-primary btn-sm" style="float: right">
+            Добавить в корзину
+        </button>
+    </form>
+
+    <div class="badge badge-info" style="float: right">
+        @Model.Price.ToString("c")
+    </div>
+
+</div>
+

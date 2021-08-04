@@ -1,0 +1,21 @@
+﻿@model IEnumerable<string>
+
+<a class="btn btn-toolbar btn-primary"
+   asp-controller="Product"
+   asp-action="ProductsView"
+   asp-route-category=""
+   asp-route-pageNumber="1">
+    Все категории
+</a>
+<li>
+    @foreach (var category in Model)
+    {
+        <a class="btn btn-toolbar btn-secondary"
+           asp-controller="Product"
+           asp-action="ProductsView"
+           asp-route-category="@category"
+           asp-route-pageNumber="1">
+            @category
+        </a>
+    }
+</li>

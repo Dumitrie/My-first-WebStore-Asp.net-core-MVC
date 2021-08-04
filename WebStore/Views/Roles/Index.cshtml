@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
+
+<div class="bg-primary">
+    <h4>Роли в системе </h4>
+</div>
+
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>Id Role</th>
+        <th>Role Name</th>
+        <th>Users</th>
+        <th>Actions</th>
+    </tr>
+    @if (!Model.Any())
+    {
+        <tr>
+            <td colspan="3">нет ролей</td>
+        </tr>
+    }
+    else
+    {
+        foreach (var role in Model)
+        {
+            <tr>
+                <td>@role.Id</td>
+                <td>@role.Name</td>
+
+                <td role-users="@role.Id"></td>
+
+                <td>
+                    <form asp-action="Edit" asp-route-id="@role.Id" method="post">
+                        <button type="submit" class="btn btn-success">
+                            Изменить
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+<a class="btn btn-primary" asp-action="Create">Создать роль</a>

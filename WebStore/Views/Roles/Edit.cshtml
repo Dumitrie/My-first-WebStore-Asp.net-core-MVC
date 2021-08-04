@@ -1,0 +1,46 @@
+﻿@model AppRoleEditModel
+
+<div class="bg-primary">
+    <h4> Назначить пользователей для роли '@Model.Role.Name' </h4>
+</div>
+
+<form asp-action="Modify" method="post">
+    <input type="hidden" name="roleName" value="@Model.Role.Name" />
+    <input type="hidden" name="roleId" value="@Model.Role.Id" />
+    <h5> Пользователи не в этой роли </h5>
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>Имя пользователя</th>
+            <th>Выберите чтобы добавить</th>
+        </tr>
+        @foreach (var user in Model.NonMembers)
+        {
+            <tr>
+                <th>@user.UserName</th>
+                <th>
+                    <input type="checkbox" name="IdsToAdd" value="@user.Id" />
+                </th>
+            </tr>
+        }
+    </table>
+    <h5> Пользователи в этой роли </h5>
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>Имя пользователя</th>
+            <th>Выберите чтобы убрать</th>
+        </tr>
+        @foreach (var user in Model.Members)
+        {
+            <tr>
+                <th>@user.UserName</th>
+                <th>
+                    <input type="checkbox" name="IdsToDelete" value="@user.Id" />
+                </th>
+            </tr>
+        }
+    </table>
+
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    <a class="btn btn-danger" asp-action="Index">Отменить</a>
+
+</form>

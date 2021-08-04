@@ -1,0 +1,28 @@
+﻿@model IEnumerable<AppUserModel>
+
+<div class="bg-primary" text="white">
+    <h4>Пользователи</h4>
+</div>
+<table class="table table-bordered table-hover">
+    <tr>
+        <td>Id</td>
+        <td>Name</td>
+        <td>Email</td>
+    </tr>
+    @if (!Model.Any())
+    {
+        <tr><td colspan="3">Нет зарегистрированных пользователей в системе</td></tr>
+    }
+    else
+    {
+        @foreach (AppUserModel user in Model)
+        {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.UserName</td>
+                <td>@user.Email</td>
+            </tr>
+        }
+    }
+</table>
+<a class="btn btn-primary" asp-action="Create" asp-controller="Admin">Создать пользователя</a>
